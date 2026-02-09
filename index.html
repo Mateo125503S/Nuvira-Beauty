@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUVIRA - Service</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* GENERAL */
+        body {
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        /* SERVICE CARDS */
+        .service-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: auto; /* Mantiene la proporción */
+            object-fit: contain; /* Muestra toda la imagen */
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            background: #f0f0f0;
+        }
+
+        /* BOTÓN */
+        .book-btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: #fff;
+        }
+
+        .book-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        /* LANGUAGE SWITCHER */
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 0.3rem 0.5rem;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- LANGUAGE SWITCHER -->
+    <select id="languageSwitcher" class="language-switcher">
+        <option value="en">EN</option>
+        <option value="pl">PL</option>
+        <option value="ru">RU</option>
+    </select>
+
+    <main class="container">
+        <h1 id="service-title"></h1>
+        <p id="service-description"></p>
+
+        <!-- FACIAL CARD -->
+        <div id="facial-card" class="service-card" style="display:none;">
+            <img src="f.1.jpg" alt="Facial Rejuvenation">
+            <button class="book-btn" onclick="bookService('facial')" id="book-facial-btn"></button>
+        </div>
+
+        <!-- LASER CARD -->
+        <div id="laser-card" class="service-card" style="display:none;">
+            <img src="p.1.jpg" alt="Laser info 1">
+            <img src="p.2.jpg" alt="Laser info 2">
+            <button class="book-btn" onclick="bookService('laser')" id="book-laser-btn"></button>
+        </div>
+
+        <!-- MASSAGE CARD -->
+        <div id="massage-card" class="service-card" style="display:none;">
+            <img src="m.3.jpg" alt="Massage info 1">
+            <img src="m.2.jpg" alt="Massage info 2">
+            <button class="book-btn" onclick="bookService('massage')" id="book-massage-btn"></button>
+        </div>
+    </main>
+
+    <script>
+        // DATOS DE SERVICIOS
+        const servicesData = {
+            facial: {
+                en: { title: "Facial Rejuvenation", desc: "Restore your skin’s natural glow with our luxurious facials." },
+                pl: { title: "Odmładzanie twarzy", desc: "Przywróć naturalny blask skóry dzięki naszym luksusowym zabiegom." },
+                ru: { title: "Омоложение лица", desc: "Восстановите естественное сияние кожи с помощью наших роскошных процедур." }
+            },
+            laser: {
+                en: { title: "Laser Hair Removal", desc: "Safe and precise treatments for flawlessly smooth skin." },
+                pl: { title: "Depilacja laserowa", desc: "Bezpieczne i precyzyjne zabiegi dla idealnie gładkiej skóry." },
+                ru: { title: "Лазерная эпиляция", desc: "Безопасные и точные процедуры для идеально гладкой кожи." }
+            },
+            massage: {
+                en: { title: "Therapeutic Massage", desc: "Relax and restore balance with expert massage therapy." },
+                pl: { title: "Masaż terapeutyczny", desc: "Zrelaksuj się i przywróć równowagę dzięki profesjonalnej terapii masażu." },
+                ru: { title: "Терапевтический массаж", desc: "Расслабьтесь и восстановите баланс с помощью профессионального массажа." }
+            }
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const serviceKey = params.get('service') || 'facial';
+        const currentLang = localStorage.getItem("lang") || "en";
+
+        // Rellenar título y descripción
+        const serviceInfo = servicesData[serviceKey][currentLang];
+        document.getElementById('service-title').textContent = serviceInfo.title;
+        document.getElementById('service-description').textContent = serviceInfo.desc;
+
+        // Mostrar solo la tarjeta correspondiente
+        document.querySelectorAll('.service-card').forEach(card => card.style.display = 'none');
+        document.getElementById(serviceKey+'-card').style.display = 'block';
+
+        // Botones BOOK NOW
+        const bookBtns = {
+            facial: document.getElementById('book-facial-btn'),
+            laser: document.getElementById('book-laser-btn'),
+            massage: document.getElementById('book-massage-btn')
+        };
+
+        for (let key in bookBtns){
+            bookBtns[key].textContent = currentLang === "en" ? "BOOK NOW" : currentLang === "pl" ? "ZAREZERWUJ TERAZ" : "ЗАБРОНИРОВАТЬ";
+        }
+
+        function bookService(service){
+            const phone = "48791496016";
+            const messages = {
+                en: `Hello, I would like to book the service: ${servicesData[service][currentLang].title}`,
+                pl: `Dzień dobry, chciałbym umówić usługę: ${servicesData[service][currentLang].title}`,
+                ru: `Здравствуйте, я хотел(а) бы забронировать услугу: ${servicesData[service][currentLang].title}`
+            };
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(messages[currentLang])}`,"_blank");
+        }
+
+        // LANGUAGE SWITCHER
+        const languageSwitcher = document.getElementById("languageSwitcher");
+        languageSwitcher.value = currentLang;
+        languageSwitcher.addEventListener("change", e => {
+            localStorage.setItem("lang", e.target.value);
+            location.reload();
+        });
+    </script>
+</body>
+</html>
