@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NUVIRA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+<header>
+    <!-- LANGUAGE SWITCHER -->
+    <div class="language-switcher-wrapper">
+        <select id="languageSwitcher" class="language-switcher">
+            <option value="en">EN</option>
+            <option value="pl">PL</option>
+            <option value="ru">RU</option>
+        </select>
+    </div>
+
+    <div class="container header-container">
+        <p class="logo">NUVIRA</p>
+        <nav>
+            <a href="#ABOUT-US" data-i18n="nav_about">Who We Are</a>
+            <a href="#Our-Services" data-i18n="nav_services">Our Services</a>
+            <a href="#contact-us" data-i18n="nav_contact">Contact Us</a>
+        </nav>
+    </div>
+</header>
+
+
+    <!-- HERO -->
+    <section id="hero">
+        <div class="monogram">N</div>
+
+        <h1 class="brand-title">NUVIRA</h1>
+
+        <span class="brand-subtitle">
+            Massage | Facial | Laser 
+        </span>
+
+        <div class="brand-line"></div>
+
+        <p class="brand-description" data-i18n="hero_description">
+            Luxury treatments designed to enhance your natural radiance.
+        </p>
+
+        <button class="luxury-btn" data-i18n="book_now" onclick="openWhatsApp()">BOOK NOW</button>
+    </section>
+
+    <!-- ABOUT US -->
+    <section id="ABOUT-US" class="reveal">
+        <div class="container">
+            <h2 data-i18n="about_title">NUVIRA</h2>
+            <p data-i18n="about_text">
+                With over 6 years of experience, we take pride in delivering excellent results through personalized care, modern techniques, and high-quality treatments.
+                Our team is committed to providing a luxury experience where every client feels
+                confident, cared for, and radiant.
+            </p>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="Our-Services" class="reveal">
+        <div class="container">
+            <h2>Our Services</h2>
+
+            <div class="services-container">
+                <div class="carta">
+                    <h3 data-i18n="service_facial">Facial Rejuvenation</h3>
+                    <p data-i18n="service_facial_desc">Restore your skin’s natural glow with our luxurious facials.</p>
+                    <button data-i18n="prices_btn" onclick="window.location.href='service.html?service=facial'">PRICES</button>
+                </div>
+
+                <div class="carta">
+                    <h3 data-i18n="service_laser">Laser Hair Removal</h3>
+                    <p data-i18n="service_laser_desc">Safe and precise treatments for flawlessly smooth skin.</p>
+                    <button data-i18n="prices_btn" onclick="window.location.href='service.html?service=laser'">PRICES</button>
+                </div>
+
+                <div class="carta">
+                    <h3 data-i18n="service_massage">Therapeutic Massage</h3>
+                    <p data-i18n="service_massage_desc">Relax and restore balance with expert massage therapy.</p>
+                    <button data-i18n="prices_btn" onclick="window.location.href='service.html?service=massage'">PRICES</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact-us" class="reveal">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>
+                Ready to experience refined beauty? Book your appointment today.
+            </p>
+            <button onclick="openWhatsApp()" class="luxury-btn">BOOK NOW</button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 NUVIRA. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- SCROLL ANIMATION SCRIPT -->
+    <script>
+        const reveals = document.querySelectorAll(".reveal");
+
+        window.addEventListener("scroll", () => {
+            reveals.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const triggerPoint = window.innerHeight * 0.85;
+
+                if (sectionTop < triggerPoint) {
+                    section.classList.add("active");
+                }
+            });
+        });
+    </script>
+
+    <!-- FLOATING SOCIAL BUTTONS -->
+    <div class="social-float-container">
+        <div class="tiktok-float" onclick="openTikTok()">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/TikTok_logo_white.svg" alt="TikTok">
+        </div>
+
+        <div class="facebook-float" onclick="openFacebook()">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" alt="Facebook">
+        </div>
+
+        <div class="instagram-float" onclick="openInstagram()">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+        </div>
+
+        <div class="whatsapp-float" onclick="openWhatsApp()">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+        </div>
+    </div>
+
+    <script>
+        function openInstagram() {
+            window.open("https://www.instagram.com/nuvira_wroclaw?igsh=N2ZsM3d0Ym1jZGp3", "_blank");
+        }
+
+        function openFacebook() {
+            window.open("https://www.facebook.com/TU_PAGINA/", "_blank");
+        }
+
+        function openTikTok() {
+            window.open("https://www.tiktok.com/@TU_USUARIO", "_blank");
+        }
+    </script>
+
+    <script>
+        const whatsappText = {
+            en: "Hello, I would like to book an appointment for",
+            pl: "Dzień dobry, chciałbym umówić wizytę na",
+            ru: "Здравствуйте, я хотел(а) бы записаться на"
+        };
+
+        function openWhatsApp(service = "") {
+            const lang = localStorage.getItem("lang") || "en";
+            const phone = "48791496016";
+            const message = `${whatsappText[lang]} ${service}`;
+            window.open(
+                `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
+                "_blank"
+            );
+        }
+    </script>
+
+    <script>
+        // Traducciones de todos los textos
+        const translationsText = {
+            en: {
+                nav_about: "Who We Are",
+                nav_services: "Our Services",
+                nav_contact: "Contact Us",
+                hero_description: "Luxury treatments designed to enhance your natural radiance.",
+                book_now: "BOOK NOW",
+                about_title: "NUVIRA",
+                about_text: "With over 6 years of experience, we take pride in delivering excellent results through personalized care, modern techniques, and high-quality treatments. Our team is committed to providing a luxury experience where every client feels confident, cared for, and radiant.",
+                service_facial: "Facial Rejuvenation",
+                service_facial_desc: "Restore your skin’s natural glow with our luxurious facials.",
+                service_laser: "Laser Hair Removal",
+                service_laser_desc: "Safe and precise treatments for flawlessly smooth skin.",
+                service_massage: "Therapeutic Massage",
+                service_massage_desc: "Relax and restore balance with expert massage therapy.",
+                modal_prices_title: "Our Prices",
+                modal_services_title: "Services",
+                prices_btn: "PRICES"
+            },
+            pl: {
+                nav_about: "Kim jesteśmy",
+                nav_services: "Nasze usługi",
+                nav_contact: "Kontakt",
+                hero_description: "Luksusowe zabiegi podkreślające Twoje naturalne piękno.",
+                book_now: "ZAREZERWUJ TERAZ",
+                about_title: "NUVIRA",
+                about_text: "Z ponad 6-letnim doświadczeniem, dostarczamy doskonałe rezultaty dzięki spersonalizowanej opiece, nowoczesnym technikom i wysokiej jakości zabiegom. Nasz zespół dąży do zapewnienia luksusowego doświadczenia, w którym każdy klient czuje się pewny siebie, zaopiekowany i promienny.",
+                service_facial: "Odmładzanie twarzy",
+                service_facial_desc: "Przywróć naturalny blask skóry dzięki naszym luksusowym zabiegom.",
+                service_laser: "Depilacja laserowa",
+                service_laser_desc: "Bezpieczne i precyzyjne zabiegi dla idealnie gładkiej skóry.",
+                service_massage: "Masaż terapeutyczny",
+                service_massage_desc: "Zrelaksuj się i przywróć równowagę dzięki profesjonalnej terapii masażu.",
+                modal_prices_title: "Cennik",
+                modal_services_title: "Usługi",
+                prices_btn: "CENY"
+            },
+            ru: {
+                nav_about: "О нас",
+                nav_services: "Наши услуги",
+                nav_contact: "Контакты",
+                hero_description: "Роскошные процедуры для вашей естественной красоты.",
+                book_now: "ЗАБРОНИРОВАТЬ",
+                about_title: "NUVIRA",
+                about_text: "С более чем 6-летним опытом мы гордимся отличными результатами благодаря индивидуальному подходу, современным методикам и высококачественным процедурам. Наша команда стремится предоставить роскошный опыт, в котором каждый клиент чувствует себя уверенно, заботливо и сияюще.",
+                service_facial: "Омоложение лица",
+                service_facial_desc: "Восстановите естественное сияние кожи с помощью наших роскошных процедур.",
+                service_laser: "Лазерная эпиляция",
+                service_laser_desc: "Безопасные и точные процедуры для идеально гладкой кожи.",
+                service_massage: "Терапевтический массаж",
+                service_massage_desc: "Расслабьтесь и восстановите баланс с помощью профессионального массажа.",
+                modal_prices_title: "Наши цены",
+                modal_services_title: "Услуги",
+                prices_btn: "ЦЕНЫ"
+            }
+        };
+
+        function setLanguage(lang) {
+            localStorage.setItem("lang", lang);
+
+            // Cambiar todos los elementos con data-i18n
+            document.querySelectorAll("[data-i18n]").forEach(el => {
+                const key = el.getAttribute("data-i18n");
+                if (translationsText[lang][key]) {
+                    el.textContent = translationsText[lang][key];
+                }
+            });
+        }
+
+        const languageSwitcher = document.getElementById("languageSwitcher");
+
+        languageSwitcher.addEventListener("change", (e) => {
+            setLanguage(e.target.value);
+        });
+
+        window.addEventListener("load", () => {
+            const savedLang = localStorage.getItem("lang") || "en";
+            languageSwitcher.value = savedLang;
+            setLanguage(savedLang);
+        });
+    </script>
+
+</body>
+</html>

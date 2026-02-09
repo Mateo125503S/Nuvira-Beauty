@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://127.0.0.1:5500/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BELLAS</title>
+    <link rel="stylesheet" href="./BELLAS_files/styles.css">
+</head>
+<body>
+    
+    <header>
+        <div class="container">
+            <p class="logo">BELLAS</p>
+            <nav>
+                <a href="http://127.0.0.1:5500/index.html#">Who We are</a>
+                <a href="http://127.0.0.1:5500/index.html#">Our Services</a>
+                <a href="http://127.0.0.1:5500/index.html#">Contact Us</a>
+        </nav></div>
+    </header>
+    <section id="hero">
+        <h1>Self-Care That Makes You Glow <br>Glow Starts Here</h1>
+            <button>BOOK NOW</button>
+    </section>
+            <section id="ABOUT-US">
+                <div class="img-container"></div>
+                <h2>BELLAS</h2>
+                <p>With over 6 years of experience, we take pride in delivering excellent results through our personalized care, modern techniques, and high-quality treatments. Our team is committed to providing a luxury experience in a warm and welcoming environment, where every client feels confident, cared for, and radiant.</p>
+            </section>
+            
+    
+    <section id="Our-Services">
+        <div class="container">
+            <h2>Our Services</h2>
+        <div class="carta">
+            <h3>Facial Rejuvenation Treatments</h3>
+            <p>Restore your skin's natural glow our luxurious, results-driven facials.</p>
+            <button>PRICES</button>
+        </div>
+        <div class="carta">
+            <h3>Laser Hair Removal Services</h3>
+            <p>Experience smooth, flawless skin with our safe and precise laser treatments.</p>
+            <button>PRICES</button>
+        </div>
+        <div class="carta">
+            <h3>Relaxing &amp; Therapeutic Massages</h3>
+            <p>Unwind and restore balance with our expert, rejuvenating massage treatments</p>
+            <button>PRICES</button>
+        </div>
+        </div>
+    </section>
+
+    <section id="packages">
+        <div class="container">
+            <h2>Packages</h2>
+        <div class="carta">
+            <h3>Glow &amp; Relax Package</h3>
+            <p>Indulge in a rejuvenating facial and a soothing massage for the ultimate self-care experience.</p>
+            <button>PRICES</button>
+        </div>
+        <div class="carta">
+            <h3>Smooth &amp; Radiant Package</h3>
+            <p>Combine laser hair removal with a revitalizing facial to achieve silky smooth skin and a radiant complexion.</p>
+            <button>PRICES</button>
+        </div>
+        <div class="carta">
+            <h3>Ultimate Beauty Package</h3>
+            <p>Treat yourself to the complete BELLAS experience with laser hair removal, a luxurious facial, and a therapeutic massage.</p>
+            <button>PRICES</button>
+        </div>
+        </div>
+
+    </section>
+
+    <section id="contact-us">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>Ready to experience the ultimate in self-care and beauty? Book your appointment today and let us help you shine from the inside out!</p>
+            <button>BOOK NOW</button>
+    </div></section>
+    <footer>
+        <div class="container">
+            <p>© 2025 BELLAS. All rights reserved.</p>
+    </div></footer>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+</body></html>

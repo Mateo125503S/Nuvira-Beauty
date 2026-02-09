@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NUVIRA Packages</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <body class="packages-page">
+
+
+<header>
+    <select id="languageSwitcher" class="language-switcher">
+        <option value="en">EN</option>
+        <option value="pl">PL</option>
+        <option value="ru">RU</option>
+    </select>
+    <div class="container header-container">
+    <p class="logo">NUVIRA</p>
+        <nav>
+            <a href="index.html" data-i18n="nav_about">Who We Are</a>
+            <a href="index.html#Our-Services" data-i18n="nav_services">Our Services</a>
+            <a href="index.html#contact-us" data-i18n="nav_contact">Contact Us</a>
+        </nav>
+        </div>
+</header>
+
+<main class="container">
+    <h1 id="packageTitle"></h1>
+    <p id="packageDesc"></p>
+    <button id="bookBtn">BOOK NOW</button>
+</main>
+
+<script>
+// Datos de paquetes
+const packagesData = {
+    glowrelax: {
+        titleKey: "package_glow_relax",
+        descKey: "package_glow_relax_desc"
+    },
+    smoothradiant: {
+        titleKey: "package_smooth_radiant",
+        descKey: "package_smooth_radiant_desc"
+    },
+    ultimatebeauty: {
+        titleKey: "package_ultimate_beauty",
+        descKey: "package_ultimate_beauty_desc"
+    }
+};
+
+// Traducciones (igual que en index.html)
+const translationsText = {
+    en: {
+        package_glow_relax: "Glow & Relax",
+        package_glow_relax_desc: "A rejuvenating facial paired with a soothing massage.",
+        package_smooth_radiant: "Smooth & Radiant",
+        package_smooth_radiant_desc: "Laser hair removal combined with a revitalizing facial.",
+        package_ultimate_beauty: "Ultimate Beauty",
+        package_ultimate_beauty_desc: "The complete luxury self-care experience.",
+        book_now: "BOOK NOW"
+    },
+    pl: {
+        package_glow_relax: "Glow & Relax",
+        package_glow_relax_desc: "Odmładzająca twarz w połączeniu z relaksującym masażem.",
+        package_smooth_radiant: "Smooth & Radiant",
+        package_smooth_radiant_desc: "Depilacja laserowa połączona z rewitalizującym zabiegiem na twarz.",
+        package_ultimate_beauty: "Ultimate Beauty",
+        package_ultimate_beauty_desc: "Kompleksowe luksusowe doświadczenie pielęgnacyjne.",
+        book_now: "ZAREZERWUJ TERAZ"
+    },
+    ru: {
+        package_glow_relax: "Glow & Relax",
+        package_glow_relax_desc: "Омолаживающая процедура лица в сочетании с расслабляющим массажем.",
+        package_smooth_radiant: "Smooth & Radiant",
+        package_smooth_radiant_desc: "Лазерная эпиляция с восстанавливающей процедурой для лица.",
+        package_ultimate_beauty: "Ultimate Beauty",
+        package_ultimate_beauty_desc: "Полный комплекс роскошного ухода.",
+        book_now: "ЗАБРОНИРОВАТЬ"
+    }
+};
+
+// Detectar paquete de la URL
+const urlParams = new URLSearchParams(window.location.search);
+const selectedPackage = urlParams.get('package');
+
+const packageTitle = document.getElementById("packageTitle");
+const packageDesc = document.getElementById("packageDesc");
+const bookBtn = document.getElementById("bookBtn");
+
+// Función WhatsApp
+const whatsappText = {
+    en: "Hello, I would like to book an appointment for",
+    pl: "Dzień dobry, chciałbym umówić wizytę na",
+    ru: "Здравствуйте, я хотел(а) бы записаться на"
+};
+function openWhatsApp(service = "") {
+    const lang = localStorage.getItem("lang") || "en";
+    const phone = "48791496016";
+    const message = `${whatsappText[lang]} ${service}`;
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
+}
+
+// Función para cambiar idioma
+function setLanguage(lang) {
+    localStorage.setItem("lang", lang);
+
+    if (packagesData[selectedPackage]) {
+        const keys = packagesData[selectedPackage];
+        packageTitle.textContent = translationsText[lang][keys.titleKey];
+        packageDesc.textContent = translationsText[lang][keys.descKey];
+    } else {
+        packageTitle.textContent = "Package not found";
+        packageDesc.textContent = "";
+    }
+
+    bookBtn.textContent = translationsText[lang].book_now;
+}
+
+bookBtn.addEventListener("click", () => openWhatsApp(selectedPackage));
+
+// Switcher de idioma
+const languageSwitcher = document.getElementById("languageSwitcher");
+languageSwitcher.addEventListener("change", (e) => setLanguage(e.target.value));
+
+// Aplicar idioma al cargar
+window.addEventListener("load", () => {
+    const savedLang = localStorage.getItem("lang") || "en";
+    languageSwitcher.value = savedLang;
+    setLanguage(savedLang);
+});
+</script>
+
+</body>
+</html>

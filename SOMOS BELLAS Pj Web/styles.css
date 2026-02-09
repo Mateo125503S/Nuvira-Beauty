@@ -1,0 +1,37 @@
+{
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: playfair display, serif;
+    margin: 0;
+}
+
+
+h1 {
+    font-size: 3.5em;
+}
+h2 {
+    font-size: 2.5em;
+}
+h3 {
+   font-size: 1.75em;
+}
+p {
+    font-size: 1.25em;
+}
+ul {
+    list-style: none;
+}
+button {
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 10px 30px;
+    border-radius: 1px solid rgba(0, 0, 0, 5);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 5);
+    color: rgb(112, 59, 85);
+    }
+button:hover {
+    background-color: rgb(69, 8, 36);
+    }
